@@ -1,0 +1,39 @@
+For Running the following program, Make sure that you have installed the following:
+-> Go lang
+-> Git
+
+Download Go libraries with the following commands
+go get -u gonum.org/v1/gonum/...
+go get github.com/fredericlemoine/gotree/
+go get -u github.com/golang/dep/cmd/dep
+
+Build the project with the following command
+go build
+Run the project using
+./GA_Phylogeny filepath
+
+the filepaths can be any one of the files in the Datasets folder.
+For eg. in Windows you can run the command '.\GA_Phylogeny.exe .\Datasets\30Taxa.txt'
+For now, only 3 different datasets are available which contain aligned gene sequences of 7, 13, 30 species.
+
+Config Properties.
+As there are a lot of parameters that are involved for the program, they have all been placed in a config.txt file.
+The parameter have a Format:
+<property>=<value>,<type>
+These are loaded into the program during run time and one can adjust these values to see how the model performs.
+
+For a good experience of viewing the trees, it is suggested that you experiment with different values of
+ga.output.draw.width, ga.output.draw.height to ensure that the diagram fits onto your computer screen.
+
+Other properties include:
+ga.algo.params.population.count -> The number of individual trees in every generation
+ga.algo.params.generations.count -> Max number of generation that the algorithm is allowed to run
+ga.algo.params.generations.stable.limit -> The number of generations over which a stable output is required for termination
+ga.algo.params.sequencedata.length.max= -> The maximum number of letter that should be considered in the sequences for the likelihood analysis
+                                          This part of the program is the slowest, so if you wish to see faster results, you might want to decrease this value
+ga.algo.params.selection.proliferation.fraction -> selfExplanatory (More information can be found in the report)
+ga.algo.params.mutation.branchlength -> selfExplanatory
+ga.algo.params.mutation.topology -> selfExplanatory
+ga.algo.params.crossover -> selfExplanatory
+ga.algo.params.mutation.nucleotide -> selfExplanatory
+ga.output.sampling.interval -> If set to x, prints the best tree found in every x iterations of the algorithm

@@ -1,0 +1,12 @@
+ga.algo.params.population.count=50,int
+ga.algo.params.generations.count=20000,int
+ga.algo.params.generations.stable.limit=500,int
+ga.algo.params.sequencedata.length.max=500,int
+ga.algo.params.selection.proliferation.fraction=0.2,float64
+ga.algo.params.mutation.branchlength=0.05,float64
+ga.algo.params.mutation.topology=0.25,float64
+ga.algo.params.crossover=0.25,float64
+ga.algo.params.mutation.nucleotide=0.1,float64
+ga.output.sampling.interval=100,int
+ga.output.draw.width=195,int
+ga.output.draw.height=45,int
