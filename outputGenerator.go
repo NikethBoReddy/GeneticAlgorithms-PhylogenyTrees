@@ -4,11 +4,28 @@ import (
   "strconv"
   "strings"
   "os"
-  "github.com/fredericlemoine/gotree/io/newick"
-	"github.com/fredericlemoine/gotree/tree"
-  "github.com/fredericlemoine/gotree/draw"
+  "github.com/evolbioinfo/gotree/io/newick"
+  "github.com/evolbioinfo/gotree/tree"
+  "github.com/evolbioinfo/gotree/draw"
 )
 
+
+func PaintNewickFormatTree(newickTree string, filename string) {
+  var t *tree.Tree
+  var err error
+  t, err = newick.NewParser(strings.NewReader(newickTree)).Parse()
+  if err != nil {
+ 	  panic(err)
+  }
+
+  f, err := os.Create(filename)
+  d := draw.NewPngTreeDrawer(f, 600, 400, 100, 100, 100, 100)
+  l := draw.NewNormalLayout(d, true, true, false, false)
+  // or l = draw.NewCircularLayout(d, false, false, false, false)
+  // or l = draw.NewNormalLayout(d, false, false, false, false)
+  l.DrawTree(t)
+  f.Close()
+}
 
 func PrintNewickFormatTree(newickTree string) {
   var t *tree.Tree
@@ -21,7 +38,7 @@ func PrintNewickFormatTree(newickTree string) {
   width := LoadIntConfig("ga.output.draw.width")
   height := LoadIntConfig("ga.output.draw.height")
 
-  d := draw.NewTextTreeDrawer(os.Stdout, width, height, 0)
+  d := draw.NewTextTreeDrawer(os.Stdout, width, height, 100, 100, 100, 100)
   l := draw.NewNormalLayout(d, true, true, false, true)
   l.DrawTree(t)
 }
